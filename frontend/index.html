@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Precision Agriculture AI</title>
+</head>
+<body>
+    <h1>🌱 Smart Irrigation System</h1>
+
+    <label>Temperature:</label>
+    <input id="temp" type="number"><br><br>
+
+    <label>Rainfall:</label>
+    <input id="rainfall" type="number"><br><br>
+
+    <label>Soil Type:</label>
+    <select id="soil">
+        <option value="sandy">Sandy</option>
+        <option value="clay">Clay</option>
+    </select><br><br>
+
+    <label>Crop Type:</label>
+    <input id="crop" type="text"><br><br>
+
+    <button onclick="predict()">Predict</button>
+
+    <h2 id="result"></h2>
+
+    <script>
+        function predict() {
+            const temp = document.getElementById("temp").value;
+            const rainfall = document.getElementById("rainfall").value;
+            const soil = document.getElementById("soil").value;
+            const crop = document.getElementById("crop").value;
+
+            // Mock response (for demo)
+            const result = `Water: ${temp > 30 ? 30 : 20} L/day | Risk: ${temp > 35 ? "High" : "Medium"}`;
+
+            document.getElementById("result").innerText = result;
+        }
+    </script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 def predict_irrigation(temp, rainfall, soil_type, crop_type):
-    # Basic water need logic
+
     water_need = 0
 
     if temp > 30:
@@ -19,7 +19,7 @@ def predict_irrigation(temp, rainfall, soil_type, crop_type):
     elif soil_type == "clay":
         water_need -= 5
 
-    # Risk calculation
+
     risk = "Low"
     if temp > 35 and rainfall < 10:
         risk = "High"
@@ -42,7 +42,7 @@ def generate_advisory(risk):
         return "Favorable conditions. Minimal intervention needed."
 
 
-# Example test
+
 if __name__ == "__main__":
     result = predict_irrigation(32, 10, "sandy", "wheat")
     print(result)

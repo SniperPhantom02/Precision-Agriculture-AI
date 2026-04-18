@@ -31,10 +31,26 @@
             const rainfall = document.getElementById("rainfall").value;
             const soil = document.getElementById("soil").value;
             const crop = document.getElementById("crop").value;
-
-            // Mock response (for demo)
-            const result = `Water: ${temp > 30 ? 30 : 20} L/day | Risk: ${temp > 35 ? "High" : "Medium"}`;
-
+fetch("http://127.0.0.1:8000/predict", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        temp: parseFloat(temp),
+        rainfall: parseFloat(rainfall),
+        soil_type: soil,
+        crop_type: crop
+    })
+})
+.then(response => response.json())
+.then(data => {
+    const result = `Water: ${data.water_liters_per_day} L/day | Risk: ${data.risk_level}`;
+    document.getElementById("result").innerText = result;
+})
+.catch(error => {
+    document.getElementById("result").innerText = "Error connecting to API";
+});
             document.getElementById("result").innerText = result;
         }
     </script>

@@ -27,10 +27,11 @@ def predict_irrigation(temp, rainfall, soil_type, crop_type):
         risk = "Medium"
 
     return {
-        "water_liters_per_day": max(water_need, 5),
-        "risk_level": risk,
-        "advisory": generate_advisory(risk)
-    }
+    "water_liters_per_day": max(water_need, 5),
+    "risk_level": risk,
+    "climate_impact": climate_impact(temp, rainfall),
+    "advisory": generate_advisory(risk)
+}
 
 
 def generate_advisory(risk):

@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 
-
+// 🔥 WEATHER FUNCTION (SAFE VERSION)
 async function getWeather(city) {
     const API_KEY = "5753c8287637c30fe4f8f73c77ad9db9";
 
@@ -33,13 +33,13 @@ async function getWeather(city) {
 }
 
 
-
+// ✅ ROOT ROUTE
 app.get("/", (req, res) => {
     res.json({ message: "Precision Agriculture API running" });
 });
 
 
-
+// 🔥 MAIN PREDICT ROUTE
 app.post("/predict", async (req, res) => {
     try {
         console.log("📥 BODY:", req.body);
@@ -50,11 +50,11 @@ app.post("/predict", async (req, res) => {
             return res.status(400).json({ error: "Missing fields" });
         }
 
-        
+        // 🌍 Get live weather
         const weather = await getWeather(city);
         console.log("🌦 WEATHER:", weather);
 
-      
+        // 🧠 Prediction
         const result = predictIrrigation(
             weather.temp,
             weather.rainfall,
@@ -64,7 +64,7 @@ app.post("/predict", async (req, res) => {
 
         console.log("📊 RESULT:", result);
 
-
+        // 📤 Response
         res.json({
             ...result,
             live_weather: weather
@@ -77,7 +77,7 @@ app.post("/predict", async (req, res) => {
 });
 
 
-
+// 🚀 START SERVER
 app.listen(5000, () => {
     console.log("🚀 Server running on port 5000");
 });

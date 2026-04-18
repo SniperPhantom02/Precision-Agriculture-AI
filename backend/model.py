@@ -40,7 +40,13 @@ def generate_advisory(risk):
         return "Moderate conditions. Maintain regular irrigation."
     else:
         return "Favorable conditions. Minimal intervention needed."
-
+def climate_impact(temp, rainfall):
+    if temp > 35 and rainfall < 20:
+        return "High climate stress: drought conditions likely"
+    elif rainfall > 80:
+        return "Excess rainfall: risk of flooding and nutrient loss"
+    else:
+        return "Stable climate conditions"
 
 
 if __name__ == "__main__":
